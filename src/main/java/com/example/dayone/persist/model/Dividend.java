@@ -1,2 +1,16 @@
-package com.example.dayone.persist.model;public class Dividend {
+package com.example.dayone.persist.model;
+
+import java.time.LocalDateTime;
+import lombok.Builder;
+import lombok.Data;
+import net.bytebuddy.asm.Advice.Local;
+
+@Data
+@Builder
+public class Dividend {
+
+  private LocalDateTime data;
+  private String dividend;
+
+
 }
