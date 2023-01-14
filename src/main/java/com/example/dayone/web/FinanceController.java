@@ -1,6 +1,6 @@
 package com.example.dayone.web;
 
-import com.example.dayone.persist.service.FinanceService;
+import com.example.dayone.service.FinanceService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

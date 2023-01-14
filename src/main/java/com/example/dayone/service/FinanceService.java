@@ -1,18 +1,15 @@
-package com.example.dayone.persist.service;
+package com.example.dayone.service;
 
+import com.example.dayone.persist.entity.model.Company;
+import com.example.dayone.persist.entity.model.Dividend;
 import com.example.dayone.persist.entity.CompanyEntity;
 import com.example.dayone.persist.entity.DividendEntity;
-import com.example.dayone.persist.model.Company;
-import com.example.dayone.persist.model.Dividend;
-import com.example.dayone.persist.model.ScrapedResult;
-import com.example.dayone.persist.repository.CompanyRepository;
-import com.example.dayone.persist.repository.DividendRepository;
-import java.util.ArrayList;
+import com.example.dayone.persist.entity.model.ScrapedResult;
+import com.example.dayone.repository.CompanyRepository;
+import com.example.dayone.repository.DividendRepository;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service

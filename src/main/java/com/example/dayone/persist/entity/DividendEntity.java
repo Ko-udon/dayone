@@ -1,11 +1,13 @@
 package com.example.dayone.persist.entity;
 
-import com.example.dayone.persist.model.Dividend;
+import com.example.dayone.persist.entity.model.Dividend;
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -14,6 +16,13 @@ import lombok.ToString;
 @Getter
 @ToString
 @NoArgsConstructor
+@Table(
+    uniqueConstraints = {
+        @UniqueConstraint(
+            columnNames = {"companyId","date"}
+        )
+    }
+)
 public class DividendEntity {
 
   @Id

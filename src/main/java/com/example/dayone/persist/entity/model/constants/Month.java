@@ -1,4 +1,4 @@
-package com.example.dayone.persist.model.constants;
+package com.example.dayone.persist.entity.model.constants;
 
 public enum Month {
   JAN("Jan", 1),

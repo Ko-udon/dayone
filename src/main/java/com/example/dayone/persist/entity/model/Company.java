@@ -1,4 +1,4 @@
-package com.example.dayone.persist.model;
+package com.example.dayone.persist.entity.model;
 
 import lombok.Builder;
 import lombok.Data;

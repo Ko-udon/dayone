@@ -1,9 +1,9 @@
-package com.example.dayone.persist.scraper;
+package com.example.dayone.scraper;
 
-import com.example.dayone.persist.model.Company;
-import com.example.dayone.persist.model.Dividend;
-import com.example.dayone.persist.model.ScrapedResult;
-import com.example.dayone.persist.model.constants.Month;
+import com.example.dayone.persist.entity.model.Company;
+import com.example.dayone.persist.entity.model.Dividend;
+import com.example.dayone.persist.entity.model.ScrapedResult;
+import com.example.dayone.persist.entity.model.constants.Month;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;

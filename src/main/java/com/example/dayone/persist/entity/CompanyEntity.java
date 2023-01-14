@@ -1,6 +1,6 @@
 package com.example.dayone.persist.entity;
 
-import com.example.dayone.persist.model.Company;
+import com.example.dayone.persist.entity.model.Company;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
