@@ -58,9 +58,9 @@ public class CompanyService {
   }
 
   public List<String> getCompanyNamesByKeyword(String keyword) {
-    Pageable limit = PageRequest.of(0,10);
+    Pageable limit = PageRequest.of(0, 10);
     Page<CompanyEntity> companyEntities = this.companyRepository.findByNameStartingWithIgnoreCase(
-        keyword,limit);
+        keyword, limit);
     return companyEntities.stream()
         .map(e -> e.getName())
         .collect(Collectors.toList());
@@ -79,5 +79,16 @@ public class CompanyService {
     this.trie.remove(keyword);
   }
 
+  public String deleteCompany(String ticker) {
+    var company = this.companyRepository.findByTicker(ticker)
+        .orElseThrow(() -> new RuntimeException("존재하지 않는 회사입니다."));
+
+    this.dividendRepository.deleteAllByCompanyId(company.getId());
+    this.companyRepository.delete(company);
+
+    this.deleteAutocompleteKeyword(company.getName());  //트라이에 있는 회사명 삭제
+
+    return null;
+  }
 
 }
