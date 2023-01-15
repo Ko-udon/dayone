@@ -5,22 +5,29 @@ import com.example.dayone.persist.entity.model.Dividend;
 import com.example.dayone.persist.entity.CompanyEntity;
 import com.example.dayone.persist.entity.DividendEntity;
 import com.example.dayone.persist.entity.model.ScrapedResult;
+import com.example.dayone.persist.entity.model.constants.CacheKey;
 import com.example.dayone.repository.CompanyRepository;
 import com.example.dayone.repository.DividendRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class FinanceService {
 
   private final CompanyRepository companyRepository;
   private final DividendRepository dividendRepository;
 
-  /*@Cacheable(key = "#companyName", value = CacheKey.KEY_FINANCE)*/
+  /*CacheKey.KEY_FINANCE*/
+  @Cacheable(key = "#companyName", value = CacheKey.KEY_FINANCE)
   public ScrapedResult getDividendByCompanyName(String companyName) {
+
+
     // 1. 회사명을 기준으로 회사 정보를 조회
     CompanyEntity company = this.companyRepository.findByName(companyName)
         .orElseThrow(() -> new RuntimeException("존재하지 않는 회사명 입니다."));
@@ -40,16 +47,11 @@ public class FinanceService {
     */
 
     List<Dividend> dividends = dividendEntities.stream()
-        .map(e -> Dividend.builder()
-            .data(e.getDate())
-            .dividend(e.getDividend())
-            .build())
+        .map(e -> new Dividend(e.getDate(), e.getDividend()))
         .collect(Collectors.toList());
 
-    return new ScrapedResult(Company.builder()
-        .ticker(company.getTicker())
-        .name(company.getName())
-        .build(), dividends);
+    return new ScrapedResult(new Company(company.getTicker(), company.getName()),
+        dividends);
   }
 
 }
